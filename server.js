@@ -13,6 +13,13 @@ var app = express();
 // Use environment defined port or 3000
 var port = process.env.PORT || 3000;
 
+// Debug: Check if MONGODB_URI is set
+if (!process.env.MONGODB_URI) {
+    console.error('ERROR: MONGODB_URI environment variable is not set!');
+} else {
+    console.log('MONGODB_URI is set:', process.env.MONGODB_URI.substring(0, 30) + '...');
+}
+
 // Connect to a MongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected successfully'))
