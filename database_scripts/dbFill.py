@@ -11,6 +11,7 @@
 """
 
 import sys
+import os
 import getopt
 import http.client
 import urllib
@@ -98,7 +99,9 @@ def main(argv):
         userEmails.append(str(d['data']['email']))
 
     # Open 'tasks.txt' for sample task names
-    f = open('tasks.txt','r')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    tasks_file = os.path.join(script_dir, 'tasks.txt')
+    f = open(tasks_file,'r')
     taskNames = f.read().splitlines()
 
     # Loop 'taskCount' number of times
